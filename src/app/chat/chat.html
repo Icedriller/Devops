@@ -1,0 +1,17 @@
+<div class="chat-container">
+  <h2>Gemini AI Chat</h2>
+
+  <textarea [(ngModel)]="prompt" placeholder="Ask me anything..."></textarea>
+
+  <button (click)="send()" [disabled]="loading">Send</button>
+
+
+@if (loading) {
+  <p>Thinking...</p>
+} @else {
+  @if (response.trim() !== "") {
+    <div class="response">
+      <strong>AI:</strong> {{ response }}
+    </div>
+  }
+}
