@@ -1,1 +1,115 @@
-/* You can add global styles to this file, and also import other style files */
+
+h2 {
+  font-family: 'Poppins', sans-serif;
+  align-items:center;
+	background: linear-gradient(90deg, #11998e, #38ef7d, #11998e) -100%/ 200%;
+	/* being excessively careful with compat,
+	 * though this has been supported unprefixed and
+	 * in the shorthand across major browsers for a while;
+	 * but it catches the latest browser versions supported
+	 * on Wndows XP, 7 and 8; yeah, they exist in 2025 */
+	-webkit-background-clip: text;
+	        background-clip: text;
+	/* use color, don't use -webkit-text-fill-color anymore,
+	 * was meant to solve a problem we haven't had in years */
+	color: transparent;
+	font: 900 clamp(1em, 4vw, 10em) exo, sans-serif;
+	animation: shimmer 2s linear infinite
+}
+p {
+  color: #fff;
+}
+
+@keyframes shimmer { to { background-position: 100% } }
+
+@media (forced-colors: active) {
+  p {
+    background: #212121;
+    color: aquamarine
+  }
+p    {color: red;}
+}
+
+.form__group {
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 10px;
+  width: 50%;
+}
+
+.form__field{
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: 1.3rem;
+  color: #fff;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: transparent;
+  }
+
+  &:placeholder-shown ~ .form__label {
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
+  }
+}
+
+.form__label
+{
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: #9b9b9b;
+}
+
+.form__field:focus
+{
+  ~ .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: #11998e;
+    font-weight:700;
+  }
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, #11998e,#38ef7d);
+  border-image-slice: 1;
+}
+/* reset input */
+.form__field{
+  &:required,&:invalid { box-shadow:none; }
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 1.5rem;
+  background-color:#222222;
+}
+
+.response
+{
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  color:#fff;
+}

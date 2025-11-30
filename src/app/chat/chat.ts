@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AiService } from '../services/ai';
 
@@ -9,6 +9,8 @@ import { AiService } from '../services/ai';
   templateUrl: './chat.html'
 })
 export class ChatComponent {
+
+
   prompt = '';
   response = '';
   loading = false;
@@ -20,6 +22,7 @@ export class ChatComponent {
 
   async send() {
     if (!this.prompt.trim()) return;
+
 
     this.loading = true;
     this.response = '';
@@ -34,6 +37,7 @@ export class ChatComponent {
     } finally {
       this.loading = false;
       this.cd.detectChanges(); // 🔥 forces UI update so response appears
+
     }
   }
 }

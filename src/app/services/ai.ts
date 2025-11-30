@@ -5,7 +5,7 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
   providedIn: 'root'
 })
 export class AiService {
-  private genAI = new GoogleGenerativeAI('AIzaSyBjUUAF12ts5FGO-gqMTKDfZxpM85C7tsE');
+  private genAI = new GoogleGenerativeAI('AIzaSyBHAme0PtIuyG2Ge3KoFKUVKKZ4Ne7YWC8');
 
   async ask(prompt: string): Promise<string> {
     try {

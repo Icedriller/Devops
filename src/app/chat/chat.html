@@ -1,9 +1,9 @@
-<div class="chat-container">
-  <h2>Gemini AI Chat</h2>
+<h2>Gemini Chatting bot</h2>
+<div class="form__group field">
+  <input type="input" class="form__field" [(ngModel)]="prompt" placeholder="Write something..." name="Write something.." id='Write something..' required (keydown.enter)=" send(); $event.preventDefault()"
 
-  <textarea [(ngModel)]="prompt" placeholder="Ask me anything..."></textarea>
-
-  <button (click)="send()" [disabled]="loading">Send</button>
+/>
+  <label for="Write something.." class="form__label">Write something..</label>
 
 
 @if (loading) {
@@ -15,3 +15,4 @@
     </div>
   }
 }
+</div>
