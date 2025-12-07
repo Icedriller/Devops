@@ -1,30 +1,25 @@
-import { Injectable } from '@angular/core';
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { firstValueFrom } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AiService {
-  private genAI = new GoogleGenerativeAI('AIzaSyBHAme0PtIuyG2Ge3KoFKUVKKZ4Ne7YWC8');
+  constructor(private http: HttpClient) {}
 
-  async ask(prompt: string): Promise<string> {
-    try {
-      // Use Gemini 2.5 Flash Lite
-      const model = this.genAI.getGenerativeModel({
-        model: 'gemini-2.5-flash-lite'
-      });
+  ask(prompt: string): Promise<string>{
+    const url =
+  window.location.hostname === 'localhost'
+    ? 'http://localhost:3000/devops/src/chat'   // dev mode
+    : '/devops/src/chat';                       // prod/docker mode
 
-      // Generate content
-      const result = await model.generateContent(prompt);
+    return firstValueFrom(
+    this.http.post<{ response: string }>(url, { prompt })
+  ).then(r => r.response);
 
-      // Extract response text safely
-      const response = result.response?.text() || '';
-      console.log('Gemini response:', response);  // debug output
 
-      return response.trim();
-    } catch (err) {
-      console.error('Gemini request failed:', err);
-      return 'Error: could not get response from Gemini';
-    }
+
   }
 }
